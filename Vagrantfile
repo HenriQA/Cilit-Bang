@@ -1,7 +1,6 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-#NOTE TO TEAM COOL DINOSAUR: set your own ip's and hostnames in the four lines below
 masterIP = "192.168.1.20"
 masterFQDN = "testMaster"
 agentIP = "192.168.1.21"
