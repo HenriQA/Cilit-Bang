@@ -1,0 +1,28 @@
+class jenkins(
+$jenkins_deb_file = "jenkins_2.1_all.deb")
+{
+	Exec { 
+		path => ["/usr/bin", "/bin", "/usr/sbin"]
+	}
+	
+	# need to check that the java modules name and assign correctly
+	exec{ 'check java': require => Class["java"] }
+	
+	file { "/opt/${jenkins_deb_file}":
+		ensure => present,
+		owner => vagrant,
+		mode => 755,
+		require => Exec['check java'],
+	}
+	
+	exec {'extract jenkins':
+		cwd => '/opt/',
+		command => 'sudo dpkg -i ${jenkins_deb_file}',
+		require => File["/opt/${jenkins_deb_file}"],
+	}
+	
+	exec { 'start jenkins':
+		command => sudo service start jenkins',
+		require => Exec['extract jenkins'],
+	}
+}
