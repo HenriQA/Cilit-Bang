@@ -11,9 +11,7 @@ $jenkins_archive = "jenkins_2.1_all.deb")
 		ensure => present,
 		owner => vagrant,
 		mode => 755,
-		source => "/opt/${jenkins_archive}",
-		#source => "puppet:///modules/jenkins/${jenkins_archive}",
-		#require => Exec['check java'],
+		source => "puppet:///modules/jenkins/${jenkins_archive}",
 	}
 	
 	package{ 'install jenkins':
