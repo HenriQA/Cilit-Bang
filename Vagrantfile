@@ -3,7 +3,7 @@
 
 masterIP = "192.168.1.20"
 masterFQDN = "testMaster"
-agentIP = "192.168.1.21"
+agentIP = "192.168.1.24"
 agentFQDN = "testAgent"
 
 Vagrant.configure("2") do |config|
