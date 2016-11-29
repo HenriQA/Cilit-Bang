@@ -9,8 +9,7 @@ class mysql(
 	Exec {
 		path		=>	['/usr/bin', '/usr/sbin', '/bin'],
 		returns 	=>	[0, 2, 14, 100],
-		environment =>  [ "DEBIAN_FRONTEND=noninteractive" ]
-		
+		#environment =>  ["DEBIAN_FRONTEND=noninteractive"]
 	}
 	
 	exec { "install_dep" : 
@@ -40,25 +39,28 @@ class mysql(
 	
 	exec { "set_ans" : 
 		cwd			=> "/${extract_location}/${mysql_folder}",
-		command	=> 'sudo debconf-set-selections <<< "mysql-community-server  mysql-community-server/root-pass password root"',
+		#command	=> 'sudo debconf-set-selections <<< "mysql-community-server  mysql-community-server/root-pass password root"',
+		command		=> "sudo bash -c 'debconf-set-selections <<< \"mysql-community-server  mysql-community-server/root-pass password root\"'",
 		require		=> Exec['extract_mysql'],
 	}
 	
 	exec { "set_ans2" :
 		cwd			=> "/${extract_location}/${mysql_folder}",
-		command		=> 'sudo debconf-set-selections <<< "mysql-community-server  mysql-community-server/re-root-pass password root"',
+		#command		=> 'sudo debconf-set-selections <<< "mysql-community-server  mysql-community-server/re-root-pass password root"',
+		command		=> "sudo bash -c 'debconf-set-selections <<< \"mysql-community-server  mysql-community-server/re-root-pass password root\"'",
 		require		=> Exec['set_ans'],
 	}
 	
 	exec { "install_sql" : 
 		cwd		=> "${extract_location}",
-		command	=> "sudo dpkg -R --install mysql/",
+		environment =>  [ "DEBIAN_FRONTEND=noninteractive" ],
+		#command	=> "sudo dpkg -R --install mysql/",
+		command	=> "sudo bash -c 'DEBIAN_FRONTEND=noninteractive dpkg -R --install mysql/'",
 		require	=> Exec['set_ans2'],
 	}
 	
 	exec { "sql_install_dep" : 
 		command	=> 'sudo apt-get install -f',
-		#require	=> Exec['reset_env'],
 		require	=> Exec['install_sql'],
 	}
 	
