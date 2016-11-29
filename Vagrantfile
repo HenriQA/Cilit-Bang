@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
@@ -102,4 +101,3 @@ Vagrant.configure("2") do |config|
 		end  
 	end
 end
->>>>>>> 0f3ee515ca211aa26ade8c3e9660488119d20ba4
