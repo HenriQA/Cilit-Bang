@@ -20,5 +20,10 @@ class maven (
       creates => "${maven_home}",
       require => File["/opt/${maven_archive}"]
   }
+  exec {'install maven':
+			require => Exec ['move maven'],
+			logoutput => true,
+			command => "update-alternatives --install /usr/bin/mvn mvn ${maven_home}bin/mvn 1"
+	}
 
 }
