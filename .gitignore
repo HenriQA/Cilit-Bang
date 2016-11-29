@@ -1,1 +1,2 @@
-
+#Ignore all module files
+shared_master/modules/*/files/*
