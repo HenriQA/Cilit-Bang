@@ -2,17 +2,18 @@ init.pp
 class bamboo(
 
 $installer_location = '/tmp/shared/',
-$bamboo_archive = "atlassian-bamboo-5.13.2.tar.gz",
-$bamboo_home = "/opt/atlassian-bamboo-5.13.2",
-$bamboo_folder = "bamboo",
+$bamboo_archive = 'atlassian-bamboo-5.13.2.tar.gz',
+$bamboo_home = '/opt/atlassian-bamboo-5.13.2',
+$bamboo_folder = 'bamboo',
 $install_location  ='/opt/'){
 
 Exec {
-path => ['/user/bin', '/usr/sbin', '/bin'],
+path => ['/usr/bin', '/usr/sbin', '/bin'],
 }
 
 file { "/opt/${bamboo_archive}":
 ensure => present,
+source => "puppet:///modules/bamboo/${bamboo_archive}",
 owner => vagrant,
 mode => 755,
 }
