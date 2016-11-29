@@ -41,7 +41,7 @@ Vagrant.configure("2") do |config|
 		
 			agentconfig.vm.provider :virtualbox do |agentVM| 
 				agentVM.gui = true
-				agentVM.name = "agent"
+				agentVM.name = agent[:hostname]
 				agentVM.memory = 4096
 				agentVM.cpus = 2
 			end
