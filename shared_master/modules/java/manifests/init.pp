@@ -18,20 +18,20 @@ class java (
   exec {'extract jdk':
     cwd         => '/opt/',
     command     => "sudo tar zxfv ${java_archive}",
-    creates     => '$java_home',
+    #creates     => '$java_home',
     require     => File["/opt/${java_archive}"]
   }
 
   exec { 'install java':
     require     => Exec ['extract jdk'],
     logoutput   => true,
-    command     => 'update-alternatives --install usr/bin/java java ${java_home}/bin/java 100',
+    command     => "update-alternatives --install /usr/bin/java java ${java_home}/bin/java 100",
   }
 
   exec {'install javac':
     require    => Exec['extract jdk'],
     logoutput  => true,
-    command    => 'update-alternatives --install /bin/javac javac ${java_home}/bin/javac 100',
+    command    => "update-alternatives --install /bin/javac javac ${java_home}/bin/javac 100",
   }
 
 #file { '/etc.profile.d/java/sh':
