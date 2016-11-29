@@ -29,7 +29,7 @@ Vagrant.configure("2") do |config|
 	agent_nodes = [
 		{ :hostname => 'jenkinsAgent',	:ip => '192.168.1.21',	:ram => 4096},
 		{ :hostname => 'nexusAgent',	:ip => '192.168.1.22', 	:ram => 2048},
-		{ :hostname => 'jiraAgent',		:ip => '192.168.1.23', 	:ram => 2048},
+		{ :hostname => 'jiraAgent',	:ip => '192.168.1.23', 	:ram => 2048},
 		{ :hostname => 'bambooAgent',	:ip => '192.168.1.24', 	:ram => 2048},
 		{ :hostname => 'mysqlAgent',	:ip => '192.168.1.25', 	:ram => 2048},
 	]
