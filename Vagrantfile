@@ -2,14 +2,11 @@
 # vi: set ft=ruby :
 
 masterIP = "192.168.1.20"
-masterFQDN = "testMaster"
-agentIP = "192.168.1.24"
-agentFQDN = "testAgent"
+masterFQDN = "cilitMaster"
 
 Vagrant.configure("2") do |config|
 
     config.vm.box = "chad-thompson/ubuntu-trusty64-gui"
-    config.vm.synced_folder "shared", "/tmp/shared"
 	
 	config.vm.define "master" do |master|
 		master.vm.network :public_network, ip: masterIP
@@ -25,17 +22,29 @@ Vagrant.configure("2") do |config|
 		end
 	end    
     
-	config.vm.define "agent" do |agent|
-		agent.vm.network :public_network, ip: agentIP
-		agent.vm.hostname = agentFQDN
-		agent.vm.provision :shell, path: "agent_bootstrap.sh", env: {"masterFQDN" => masterFQDN, "masterIP" => masterIP}
-		agent.vm.synced_folder "shared_agent", "/tmp/shared"
+	
+	
+	agent_nodes = [
+		{ :hostname => 'jenkinsAgent',	:ip => '192.168.1.21' },
+		#{ :hostname => 'nexusAgent',	:ip => '192.168.1.22' },
+		#{ :hostname => 'jiraAgent',	:ip => '192.168.1.23' },
+		#{ :hostname => 'bambooAgent',	:ip => '192.168.1.24' },
+		#{ :hostname => 'mysqlAgent',	:ip => '192.168.1.25' },
+	]
+	
+	agent_nodes.each do |agent|
+		config.vm.define agent[:hostname] do |agentconfig|
+			agentconfig.vm.network :public_network, ip: agent[:ip]
+			agentconfig.vm.hostname = agent[:hostname]
+			agentconfig.vm.provision :shell, path: "agent_bootstrap.sh", env: {"masterFQDN" => masterFQDN, "masterIP" => masterIP}
+			agentconfig.vm.synced_folder "shared_agent", "/tmp/shared"
 		
-		agent.vm.provider :virtualbox do |agentVM| 
-			agentVM.gui = true
-			agentVM.name = "agent"
-			agentVM.memory = 4096
-			agentVM.cpus = 2
-		end
-	end  
+			agentconfig.vm.provider :virtualbox do |agentVM| 
+				agentVM.gui = true
+				agentVM.name = "agent"
+				agentVM.memory = 4096
+				agentVM.cpus = 2
+			end
+		end  
+	end
 end
