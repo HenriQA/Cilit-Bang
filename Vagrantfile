@@ -11,8 +11,8 @@ Vagrant.configure("2") do |config|
 	config.vm.define "master" do |master|
 		master.vm.network :public_network, ip: masterIP
 		master.vm.hostname = masterFQDN
-		master.vm.provision :shell, path: "master_bootstrap.sh" 
 		master.vm.synced_folder "shared_master", "/tmp/shared"
+		master.vm.provision :shell, path: "master_bootstrap.sh" 
 		
 		master.vm.provider :virtualbox do |masterVM|
 			masterVM.gui = true
@@ -36,9 +36,9 @@ Vagrant.configure("2") do |config|
 		config.vm.define agent[:hostname] do |agentconfig|
 			agentconfig.vm.network :public_network, ip: agent[:ip]
 			agentconfig.vm.hostname = agent[:hostname]
-			agentconfig.vm.provision :shell, path: "agent_bootstrap.sh", env: {"masterFQDN" => masterFQDN, "masterIP" => masterIP}
 			agentconfig.vm.synced_folder "shared_agent", "/tmp/shared"
-		
+			agentconfig.vm.provision :shell, path: "agent_bootstrap.sh", env: {"masterFQDN" => masterFQDN, "masterIP" => masterIP}
+			
 			agentconfig.vm.provider :virtualbox do |agentVM| 
 				agentVM.gui = true
 				agentVM.name = agent[:hostname]
