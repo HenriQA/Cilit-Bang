@@ -12,6 +12,7 @@ $jenkins_deb_file = "jenkins_2.1_all.deb")
 		ensure => present,
 		owner => vagrant,
 		mode => 755,
+		source => "puppet:///modules/puppet/jenkins/${jenkins_deb_file}",
 		require => Exec['check java'],
 	}
 	
