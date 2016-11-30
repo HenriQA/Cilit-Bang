@@ -30,3 +30,6 @@ sudo cp /tmp/shared/autosign/autosign /usr/local/bin/
 sudo echo "autosign = /usr/local/bin/autosign" >> /etc/puppet/puppet.conf
 #sudo echo "autosign = true" >> /etc/puppet.conf
 sudo chmod a+x /usr/local/bin/autosign
+
+#copy site.pp to manifests
+sudo cp /tmp/shared/site.pp /etc/puppet/manifests
