@@ -1,2 +1,9 @@
-#Ignore all big binary files files
+#Ignore all big files
 shared_master/binary_files/*
+shared_master/modules/bamboo/files/atlassian-bamboo-5.13.2.tar.gz
+shared_master/modules/java/files/java.tar.gz
+shared_master/modules/jenkins/files/jenkins_2.1_all.deb
+shared_master/modules/jira/files/jira.bin
+shared_master/modules/maven/files/maven.tar.gz
+shared_master/modules/mysql/files/mysql-serrver_5.7.15-1ubuntu14.04_amd64.deb-bundle.tar
+shared_master/modules/nexus/files/nexus-3.0.2-02-unix.tar.gz
