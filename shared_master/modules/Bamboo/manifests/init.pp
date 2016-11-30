@@ -1,4 +1,3 @@
-init.pp 
 class bamboo(
 
 $installer_location = '/tmp/shared/',
@@ -11,6 +10,12 @@ Exec {
 path => ['/usr/bin', '/usr/sbin', '/bin'],
 }
 
+
+
+file {'/home/bamboo/bamboo-home':
+ensure => present,
+}
+
 file { "/opt/${bamboo_archive}":
 ensure => present,
 source => "puppet:///modules/bamboo/${bamboo_archive}",
@@ -19,14 +24,25 @@ mode => 755,
 }
 
 exec { 'extract bamboo':
-cwd => '/opt',
+cwd => '/opt/',
 command => "sudo tar zxvf ${bamboo_archive}",
-# require => File["/opt/${bamboo_archive}"],
+require => File["/opt/${bamboo_archive}", '/home/bamboo/bamboo-home'],
+}
+
+exec { 'Specify home directory' :
+command => 'sudo echo "bamboo.home=/home/bamboo/bamboo-home" >> /opt/atlassian-bamboo-5.13.2/atlassian-bamboo/WEB-INF/classes/bamboo-init.properties',
+require => Exec['extract bamboo']
+}
+
+
+exec { 'change permissions to bamboo.init':
+command => 'sudo chmod 755 /opt/atlassian-bamboo-5.13.2/atlassian-bamboo/WEB-INF/classes/bamboo-init.properties',
+require => Exec['Specify home directory'],
 }
 
 exec { 'start bamboo':
 command => "sudo /opt/atlassian-bamboo-5.13.2/bin/start-bamboo.sh",
-require => Exec['extract bamboo'],
+require => Exec['change permissions to bamboo.init'],
 }
 
 
