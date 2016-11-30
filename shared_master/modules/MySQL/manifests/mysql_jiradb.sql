@@ -1,4 +1,0 @@
-CREATE USER 'jiradbuser'@'%' IDENTIFIED BY 'r4Pt0r';
-CREATE DATABASE jiradb CHARACTER SET utf8 COLLATE utf8_bin;
-GRANT ALL PRIVILEGES ON jiradb.* TO 'jiradbuser'@'%';
-FLUSH PRIVILEGES;

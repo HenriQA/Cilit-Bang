@@ -1,4 +1,0 @@
-CREATE USER 'bamboouser'@'%' IDENTIFIED BY 'St4rbuck';
-CREATE DATABASE bamboo CHARACTER SET utf8 COLLATE utf8_bin;
-GRANT ALL PRIVILEGES ON bamboo.* TO 'bamboouser'@'%';
-FLUSH PRIVILEGES;
