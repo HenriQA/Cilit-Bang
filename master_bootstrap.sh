@@ -24,6 +24,7 @@ sudo cp /tmp/shared/binary_files/maven.tar.gz /usr/share/puppet/modules/maven/fi
 sudo cp /tmp/shared/binary_files/mysql-serrver_5.7.15-1ubuntu14.04_amd64.deb-bundle.tar /usr/share/puppet/modules/mysql/files/
 sudo cp /tmp/shared/binary_files/nexus-3.0.2-02-unix.tar.gz /usr/share/puppet/modules/nexus/files/
 
+sudo cp -r /usr/share/puppet/modules/ /etc/puppet/
 #Setup secure autosigning
 sudo cp /tmp/shared/autosign/autosign /usr/local/bin/
 

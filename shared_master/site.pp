@@ -3,23 +3,23 @@ node default {
 	include git
 }
 
-node 'jenkinsAgent' {
+node 'jenkinsAgent.qac.local' {
 	include jenkins
 	include maven
 }
 
-node 'nexusAgent' {
+node 'nexusAgent.qac.local' {
 	include nexus
 }
 
-node 'jiraAgent' {
+node 'jiraAgent.qac.local' {
 	include jira
 }
 
-node 'bambooAgent' {
+node 'bambooAgent.qac.local' {
 	include bamboo
 }
 
-node 'mysqlAgent' {
+node 'mysqlAgent.qac.local' {
 	include mysql
 }
