@@ -1,2 +1,2 @@
-#Ignore all module files
+#Ignore all big binary files files
 shared_master/binary_files/*
