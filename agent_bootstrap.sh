@@ -12,7 +12,7 @@ sudo sed -i "1s/^/127.0.0.1 $fqdn puppet\n/" /etc/hosts
 sudo sed -i "1s/^/$masterIP $masterFQDN puppetmaster\n/" /etc/hosts
 sudo sed -i "2s/^/server=$masterFQDN\n/" /etc/puppet/puppet.conf
 
-sudo cp /tmp/shared_agent/csr_attributes.yaml /etc/puppet
+sudo cp /tmp/shared/csr_attributes.yaml /etc/puppet
 
 sudo service puppet restart
 sudo puppet agent --enable
