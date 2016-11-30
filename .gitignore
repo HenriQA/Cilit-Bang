@@ -1,2 +1,2 @@
 #Ignore all module files
-shared_master/modules/*/files/*
+shared_master/binary_files/*
