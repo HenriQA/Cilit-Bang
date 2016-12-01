@@ -103,3 +103,4 @@ class mysql($mysql_archive	= 'mysql-server_5.7.15-1ubuntu14.04_amd64.deb-bundle.
 		require	=> Exec['rm_post'],
 	}
 }
+ 
