@@ -1,5 +1,5 @@
 #parameterised for future change/updates
-class mysql($mysql_archive	= 'mysql-server_5.7.16-1ubuntu14.04_amd64.deb-bundle.tar'){
+class mysql($mysql_archive	= 'mysql-server_5.7.15-1ubuntu14.04_amd64.deb-bundle.tar'){
 	
 	Exec {
 		path	=>	['/usr/bin', '/usr/sbin', '/bin'],
