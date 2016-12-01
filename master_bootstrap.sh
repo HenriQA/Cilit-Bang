@@ -16,13 +16,13 @@ sudo sed -i "1s/^/127.0.0.1 $fqdn puppetmaster\n/" /etc/hosts
 sudo cp -r /tmp/shared/modules/* /usr/share/puppet/modules/
 
 #Move binary files to correct locations
-sudo cp /tmp/shared/binary_files/atlassian-bamboo-5.13.2.tar.gz /usr/share/puppet/modules/bamboo/files/
-sudo cp /tmp/shared/binary_files/java.tar.gz /usr/share/puppet/modules/java/files/
-sudo cp /tmp/shared/binary_files/jenkins_2.1_all.deb /usr/share/puppet/modules/jenkins/files/
-sudo cp /tmp/shared/binary_files/jira.bin /usr/share/puppet/modules/jira/files/
-sudo cp /tmp/shared/binary_files/maven.tar.gz /usr/share/puppet/modules/maven/files/
-sudo cp /tmp/shared/binary_files/mysql-serrver_5.7.15-1ubuntu14.04_amd64.deb-bundle.tar /usr/share/puppet/modules/mysql/files/
-sudo cp /tmp/shared/binary_files/nexus-3.0.2-02-unix.tar.gz /usr/share/puppet/modules/nexus/files/
+sudo cp /tmp/shared/installation_files/atlassian-bamboo-5.13.2.tar.gz /usr/share/puppet/modules/bamboo/files/
+sudo cp /tmp/shared/installation_files/java.tar.gz /usr/share/puppet/modules/java/files/
+sudo cp /tmp/shared/installation_files/jenkins_2.1_all.deb /usr/share/puppet/modules/jenkins/files/
+sudo cp /tmp/shared/installation_files/jira.bin /usr/share/puppet/modules/jira/files/
+sudo cp /tmp/shared/installation_files/maven.tar.gz /usr/share/puppet/modules/maven/files/
+sudo cp /tmp/shared/installation_files/mysql-serrver_5.7.15-1ubuntu14.04_amd64.deb-bundle.tar /usr/share/puppet/modules/mysql/files/
+sudo cp /tmp/shared/installation_files/nexus-3.0.2-02-unix.tar.gz /usr/share/puppet/modules/nexus/files/
 
 sudo cp -r /usr/share/puppet/modules/ /etc/puppet/
 #Setup secure autosigning
